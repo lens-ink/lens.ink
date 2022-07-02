@@ -43,7 +43,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
             <Image src={Lucks} width={200} height={130} alt="lucks"></Image>
           </div>
           <ProfileCard profile={data}></ProfileCard>
-          <div className="mt-10 mb-52">
+          <div className="mt-10 mb-52 z-10">
             {lensApps.map((app) => {
               if (app.name === "Twitter")
                 return (

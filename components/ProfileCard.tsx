@@ -8,7 +8,7 @@ export interface ProfilePropss {
 const ProfileCard = ({ profile }: ProfilePropss) => {
   return (
     <>
-      <div className="flex flex-col px-16">
+      <div className="flex flex-col px-8 md:px-16">
         <div className="w-full flex flex-col md:flex-row items-start md:items-end">
           <img
             src={profile.picture.original.url}

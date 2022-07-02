@@ -2,18 +2,18 @@ import { LensApp } from "../types";
 
 export const lensApps: LensApp[] = [
   {
-    name: "Website",
-    logo: require("../assets/website.svg"),
-    color: "#000000",
-    link: (handle: string) => handle,
-    url: (handle: string) => handle,
-  },
-  {
     name: "Twitter",
     logo: require("../assets/twitter.svg"),
     color: "#1D9BF0",
     link: (handle: string) => "@" + handle,
     url: (handle: string) => "https://twitter.com/" + handle,
+  },
+  {
+    name: "Website",
+    logo: require("../assets/website.svg"),
+    color: "#000000",
+    link: (handle: string) => handle.replaceAll("https://", ""),
+    url: (handle: string) => handle,
   },
   {
     name: "LensFrens",
@@ -40,12 +40,14 @@ export const exampleLinks =
     ? [
         "lensprotocol.lens.ink",
         "bradorbradley.lens.ink",
+        "m1guelpf.lens.ink",
         "yixin91069033.lens.ink",
         "juliettech.lens.ink",
       ]
     : [
         "lensprotocol.localhost:3000",
         "bradorbradley.localhost:3000",
+        "m1guelpf.localhost:3000",
         "yixin91069033.localhost:3000",
         "juliettech.localhost:3000",
       ];
