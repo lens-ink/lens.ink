@@ -18,7 +18,7 @@ const AppLink = ({ handle, lensApp }: AppLinkProps) => {
         <a
           className={`ml-4 no-underline text-lg text-[${lensApp.color}] hover:underline`}
           style={{ color: lensApp.color }}
-          href={"https://" + lensApp.link(handle)}
+          href={lensApp.url?.(handle) ?? "https://" + lensApp.link(handle)}
           rel="noreferrer"
         >
           {lensApp.link(handle)}

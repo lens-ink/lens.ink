@@ -11,6 +11,7 @@ export type LensApp = {
   logo: any;
   color: string;
   link: (handle: string) => string;
+  url?: (handle: string) => string;
 };
 
 export type Profile = {
@@ -21,6 +22,12 @@ export type Profile = {
   metadata: string;
   isDefault: boolean;
   handle: string;
+  attributes: {
+    displayType: string | null;
+    traitType: string;
+    key: "website" | "twitter" | "app";
+    value: string;
+  }[];
   picture: {
     original: {
       url: string;

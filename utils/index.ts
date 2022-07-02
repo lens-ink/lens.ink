@@ -2,6 +2,20 @@ import { LensApp } from "../types";
 
 export const lensApps: LensApp[] = [
   {
+    name: "Website",
+    logo: require("../assets/website.svg"),
+    color: "#000000",
+    link: (handle: string) => handle,
+    url: (handle: string) => handle,
+  },
+  {
+    name: "Twitter",
+    logo: require("../assets/twitter.svg"),
+    color: "#1D9BF0",
+    link: (handle: string) => "@" + handle,
+    url: (handle: string) => "https://twitter.com/" + handle,
+  },
+  {
     name: "LensFrens",
     logo: require("../assets/lensfrens.svg"),
     color: "#00501e",
@@ -20,6 +34,21 @@ export const lensApps: LensApp[] = [
     link: (handle: string) => "irisapp.xyz/user/" + handle,
   },
 ];
+
+export const exampleLinks =
+  process.env.NODE_ENV === "production"
+    ? [
+        "lensprotocol.lens.ink",
+        "bradorbradley.lens.ink",
+        "yixin91069033.lens.ink",
+        "juliettech.lens.ink",
+      ]
+    : [
+        "lensprotocol.localhost:3000",
+        "bradorbradley.localhost:3000",
+        "yixin91069033.localhost:3000",
+        "juliettech.localhost:3000",
+      ];
 
 export function parseId(id: string) {
   return "#" + parseInt(id, 16).toFixed();

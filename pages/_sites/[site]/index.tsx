@@ -29,6 +29,9 @@ const Index = ({ stringifiedData }: IndexProps) => {
     ogUrl: `https://${data.name}.lens.ink`,
   } as Meta;
 
+  const twitter = data.attributes.find((a) => a.key === "twitter")?.value;
+  const website = data.attributes.find((a) => a.key === "website")?.value;
+
   return (
     <>
       <Layout meta={meta}>
@@ -41,13 +44,36 @@ const Index = ({ stringifiedData }: IndexProps) => {
           </div>
           <ProfileCard profile={data}></ProfileCard>
           <div className="mt-10 mb-52">
-            {lensApps.map((app) => (
-              <AppLink
-                lensApp={app}
-                handle={data.handle}
-                key={app.name}
-              ></AppLink>
-            ))}
+            {lensApps.map((app) => {
+              if (app.name === "Twitter")
+                return (
+                  twitter && (
+                    <AppLink
+                      lensApp={app}
+                      handle={twitter}
+                      key={app.name}
+                    ></AppLink>
+                  )
+                );
+              if (app.name === "Website")
+                return (
+                  website && (
+                    <AppLink
+                      lensApp={app}
+                      handle={website}
+                      key={app.name}
+                    ></AppLink>
+                  )
+                );
+
+              return (
+                <AppLink
+                  lensApp={app}
+                  handle={data.handle}
+                  key={app.name}
+                ></AppLink>
+              );
+            })}
           </div>
         </div>
       </Layout>

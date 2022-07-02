@@ -1,7 +1,7 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
-import Head from "next/head";
 import { Meta } from "types";
+import { exampleLinks } from "utils";
 
 const Home: NextPage = () => {
   const meta = {
@@ -11,23 +11,19 @@ const Home: NextPage = () => {
     ogImage: "",
     ogUrl: `https://lens.ink`,
   } as Meta;
-  const exampleInks = [
-    "lensprotocol.lens.ink",
-    "stani.lens.ink",
-    "bradorbradley.lens.ink",
-    "yixin91069033.lens.ink",
-    "juliettech.lens.ink",
-  ];
+
   return (
     <Layout meta={meta}>
-      <div className="h-full mt-32 text-lensDark tracking-wider">
+      <div className="h-full mt-32 text-lensDark tracking-wider text-center">
         <span className="text-7xl font-light">L</span>
         <span className="text-3xl uppercase">ens.</span>
         <span className="text-7xl font-light">ink</span>
         <div className="mt-20 text-center flex flex-col gap-4">
-          {exampleInks.map((link) => (
+          {exampleLinks.map((link) => (
             <a
-              href={`https://${link}`}
+              href={`${
+                process.env.NODE_ENV === "production" ? "https" : "http"
+              }://${link}`}
               key={link}
               className="no-underline text-lg  hover:underline"
             >
