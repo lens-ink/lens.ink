@@ -1,6 +1,15 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
+import Image from "next/image";
 import { Meta, Profile } from "../../../types";
+import { getProfile } from "../../../apollo/api";
+import ProfileCard from "../../../components/ProfileCard";
+import Layout from "../../../components/Layout";
+import { lensApps } from "../../../utils";
+import AppLink from "../../../components/AppLink";
+import Luck from "../../../assets/luck.svg";
+import Lucks from "../../../assets/lucks.svg";
+import Head from "next/head";
 
 interface IndexProps {
   stringifiedData: string;
@@ -10,18 +19,41 @@ interface PathProps extends ParsedUrlQuery {
   site: string;
 }
 
-export default function Index({ stringifiedData }: IndexProps) {
+const Index = ({ stringifiedData }: IndexProps) => {
   const data = JSON.parse(stringifiedData) as Profile;
   const meta = {
     title: data.name,
     description: data.name,
     logo: "/logo.png",
-    ogImage: data.image,
+    ogImage: data.metadata,
     ogUrl: `https://${data.name}.lens.ink`,
   } as Meta;
 
-  return <>{data.name}</>;
-}
+  return (
+    <>
+      <Layout meta={meta}>
+        <div className="relative min-w-full md:min-w-1/3 mx-auto h-full md:h-auto pt-20 bg-lens">
+          <div className="absolute -bottom-1 left-10">
+            <Image src={Luck} width={80} height={80} alt="luck"></Image>
+          </div>
+          <div className="absolute -bottom-1 right-6">
+            <Image src={Lucks} width={200} height={130} alt="lucks"></Image>
+          </div>
+          <ProfileCard profile={data}></ProfileCard>
+          <div className="mt-10 mb-52">
+            {lensApps.map((app) => (
+              <AppLink
+                lensApp={app}
+                handle={data.handle}
+                key={app.name}
+              ></AppLink>
+            ))}
+          </div>
+        </div>
+      </Layout>
+    </>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths<PathProps> = async () => {
   return {
@@ -42,11 +74,11 @@ export const getStaticProps: GetStaticProps<IndexProps, PathProps> = async ({
   if (!params) throw new Error("No path parameters found");
 
   const { site } = params;
+  console.log(site);
+  const res = await getProfile({ handle: site + ".lens" });
 
-  const data = {
-    name: site,
-    image: "",
-  };
+  console.log({ res });
+  const data = res.data.profile;
 
   if (!data) return { notFound: true, revalidate: 10 };
 
@@ -57,3 +89,5 @@ export const getStaticProps: GetStaticProps<IndexProps, PathProps> = async ({
     revalidate: 3600,
   };
 };
+
+export default Index;
