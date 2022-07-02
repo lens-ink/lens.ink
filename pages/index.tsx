@@ -1,11 +1,13 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
 import { Meta } from "types";
+import Image from "next/image";
 import { exampleLinks } from "utils";
+import Luck from "../assets/luck.svg";
 
 const Home: NextPage = () => {
   const meta = {
-    title: "Lens.ink",
+    title: "lens.ink",
     description: "Lens links",
     logo: "/favicon.png",
     ogImage: "",
@@ -31,6 +33,9 @@ const Home: NextPage = () => {
             </a>
           ))}
           ...
+        </div>
+        <div className="mt-20">
+          <Image src={Luck} width={140} height={140} alt="luck"></Image>
         </div>
       </div>
     </Layout>

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Profile } from "../types";
+import Image from "next/image";
 import { openseaUrl, parseId, polygonUrl, shortAddress } from "../utils";
 
 export interface ProfilePropss {
@@ -16,14 +17,15 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
             className="w-40 h-40 object-cover"
           />
           <div className="ml-0 md:ml-4 mt-2 md:mt-0 flex flex-col items-start">
-            <div className="text-4xl uppercase text-lensDark font-light">
+            <div className="text-3xl md:text-4xl uppercase text-lensDark font-light">
               {profile.handle}
             </div>
             <div className="mt-2 text-gray-500 ">
               <a
                 target="_blank"
                 href={openseaUrl(profile.id)}
-                className="hover:text-lensDark" rel="noreferrer"
+                className="hover:text-lensDark"
+                rel="noreferrer"
               >
                 {parseId(profile.id)}
               </a>

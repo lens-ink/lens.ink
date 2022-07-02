@@ -5,9 +5,6 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <link rel="icon" href="/for-leaf.png" />
-      </Head>
       <Component {...pageProps} />
     </>
   );

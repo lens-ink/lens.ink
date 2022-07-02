@@ -4,7 +4,7 @@ export default function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
   const hostname = req.headers.get("host") || "lens.ink";
-
+  
   const currentHost =
     process.env.NODE_ENV === "production" && process.env.VERCEL === "1"
       ? hostname.replace(`.lens.ink`, "")

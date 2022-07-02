@@ -36,7 +36,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
   return (
     <>
       <Layout meta={meta}>
-        <div className="relative min-w-full md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip">
+        <div className="relative min-w-full md:min-w-1/3 max-w-full mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip">
           <div className="absolute -bottom-1 left-10">
             <Image src={Luck} width={80} height={80} alt="luck"></Image>
           </div>
