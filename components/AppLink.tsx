@@ -21,7 +21,7 @@ const AppLink = ({ handle, lensApp }: AppLinkProps) => {
           height={lMd ? 40 : 20}
         ></Image>
         <a
-          className="ml-4 no-underline break-words text-lg hover:underline"
+          className="ml-2 md:ml-4 no-underline break-words text-lg hover:underline"
           style={{ color: lensApp.color }}
           href={lensApp.url?.(handle) ?? "https://" + lensApp.link(handle)}
           rel="noreferrer"

@@ -19,7 +19,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
             <div className="text-4xl uppercase text-lensDark font-light">
               {profile.handle}
             </div>
-            <div className="mt-4 text-gray-500 ">
+            <div className="mt-2 text-gray-500 ">
               <a
                 target="_blank"
                 href={openseaUrl(profile.id)}
