@@ -14,10 +14,9 @@ export default function middleware(req: NextRequest) {
     if (
       hostname === "localhost:3000" ||
       hostname === "lens.ink" ||
-      hostname === "www.lens.ink"
+      hostname === "www.lens.ink" ||
+      hostname === "lens-links.vercel.app"
     ) {
-      console.log(url)
-    //   url.pathname = `/home${url.pathname}`;
       return NextResponse.rewrite(url);
     }
 
@@ -25,4 +24,3 @@ export default function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 }
-
