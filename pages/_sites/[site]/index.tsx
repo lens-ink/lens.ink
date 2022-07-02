@@ -75,7 +75,9 @@ export const getStaticProps: GetStaticProps<IndexProps, PathProps> = async ({
 
   const { site } = params;
   console.log(site);
-  const res = await getProfile({ handle: site + ".lens" });
+  const res = await getProfile({
+    handle: site !== "lensprotocol" ? site + ".lens" : site,
+  });
 
   console.log({ res });
   const data = res.data.profile;

@@ -6,10 +6,10 @@ export default function middleware(req: NextRequest) {
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
   const hostname = req.headers.get("host") || "lens.ink";
 
-  // Only for demo purposes – remove this if you want to use your root domain as the landing page
-  if (hostname === "lens.ink") {
-    return NextResponse.redirect("https://lens.ink");
-  }
+  // // Only for demo purposes – remove this if you want to use your root domain as the landing page
+  // if (hostname === "lens.ink") {
+  //   return NextResponse.redirect("https://lens.ink");
+  // }
 
   const currentHost =
     process.env.NODE_ENV === "production" && process.env.VERCEL === "1"
