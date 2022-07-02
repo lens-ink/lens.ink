@@ -4,6 +4,7 @@ export interface Meta {
   ogImage?: string;
   ogUrl?: string;
   title?: string;
+  twitter?: string
 }
 
 export type LensApp = {

@@ -15,7 +15,7 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <link rel="icon" href="/favicon.png" />
         <link rel="shortcut icon" type="image/x-icon" href={meta?.logo} />
         <link rel="apple-touch-icon" sizes="180x180" href={meta?.logo} />
-        <meta name="theme-color" content="#7b46f6" />
+        <meta name="theme-color" content="#00501e" />
 
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,8 +31,8 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Vercel" />
-        <meta name="twitter:creator" content="@StevenTey" />
+        <meta name="twitter:site" content={meta?.twitter} />
+        <meta name="twitter:creator" content="@shimenmen" />
         <meta name="twitter:title" content={meta?.title} />
         <meta name="twitter:description" content={meta?.description} />
         <meta name="twitter:image" content={meta?.ogImage} />

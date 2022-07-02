@@ -9,7 +9,6 @@ import { lensApps } from "../../../utils";
 import AppLink from "../../../components/AppLink";
 import Luck from "../../../assets/luck.svg";
 import Lucks from "../../../assets/lucks.svg";
-import Head from "next/head";
 
 interface IndexProps {
   stringifiedData: string;
@@ -21,16 +20,18 @@ interface PathProps extends ParsedUrlQuery {
 
 const Index = ({ stringifiedData }: IndexProps) => {
   const data = JSON.parse(stringifiedData) as Profile;
+
+  const twitter = data.attributes.find((a) => a.key === "twitter")?.value;
+  const website = data.attributes.find((a) => a.key === "website")?.value;
+
   const meta = {
     title: data.name,
     description: data.name,
     logo: "/logo.png",
     ogImage: data.picture.original.url,
     ogUrl: `https://${data.name}.lens.ink`,
+    twitter,
   } as Meta;
-
-  const twitter = data.attributes.find((a) => a.key === "twitter")?.value;
-  const website = data.attributes.find((a) => a.key === "website")?.value;
 
   return (
     <>
