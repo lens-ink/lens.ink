@@ -11,7 +11,6 @@ const AppLink = ({ handle, lensApp }: AppLinkProps) => {
   const lMd = useMediaQuery({
     query: "(min-width: 768px)",
   });
-  const size = useMemo(() => (lMd ? 40 : 20), [lMd]);
 
   return (
     <>
@@ -20,8 +19,8 @@ const AppLink = ({ handle, lensApp }: AppLinkProps) => {
           <Image
             src={lensApp.logo}
             alt={lensApp.name}
-            width={size}
-            height={size}
+            width={40}
+            height={40}
           ></Image>
         )}
         <div className="ml-0 md:ml-4 ">
@@ -31,8 +30,8 @@ const AppLink = ({ handle, lensApp }: AppLinkProps) => {
                 className="visible md:invisible"
                 src={lensApp.logo}
                 alt={lensApp.name}
-                width={size}
-                height={size}
+                width={20}
+                height={20}
               ></Image>
             )}
             <span className="ml-2 md:ml-0">{lensApp.name}</span>

@@ -37,7 +37,7 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta name="twitter:description" content={meta?.description} />
         <meta name="twitter:image" content={meta?.ogImage} />
       </Head>
-      <div className="bg-gradient-to-br from-lens via-purple-100 to-green-100 relative w-full h-screen to-indigo-400 flex flex-col items-center md:justify-center">
+      <div className="bg-gradient-to-br from-lens via-purple-100 to-green-100 relative w-full h-screen overflow-clip to-indigo-400 flex flex-col items-center md:justify-center">
         {children}
         <Footer></Footer>
       </div>
