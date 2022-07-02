@@ -25,7 +25,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
     title: data.name,
     description: data.name,
     logo: "/logo.png",
-    ogImage: data.metadata,
+    ogImage: data.picture.original.url,
     ogUrl: `https://${data.name}.lens.ink`,
   } as Meta;
 
