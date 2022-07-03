@@ -7,7 +7,7 @@ import Luck from "../assets/luck.svg";
 
 const Home: NextPage = () => {
   const meta = {
-    title: "lens.ink",
+    title: "",
     description: "Your lens profile is here",
     logo: "/favicon.png",
     ogImage: "https://lens.ink/banner.png",
