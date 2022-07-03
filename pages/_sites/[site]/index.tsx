@@ -5,10 +5,11 @@ import { Meta, Profile } from "../../../types";
 import { getProfile } from "../../../apollo/api";
 import ProfileCard from "../../../components/ProfileCard";
 import Layout from "../../../components/Layout";
-import { lensApps, linkifyBio } from "../../../utils";
+import { getAvatar, lensApps, linkifyBio } from "../../../utils";
 import AppLink from "../../../components/AppLink";
 import Luck from "../../../assets/luck.svg";
 import Lucks from "../../../assets/lucks.svg";
+import { profile } from "console";
 
 interface IndexProps {
   stringifiedData: string;
@@ -24,13 +25,13 @@ const Index = ({ stringifiedData }: IndexProps) => {
   const twitter = data.attributes.find((a) => a.key === "twitter")?.value;
   const website = data.attributes.find((a) => a.key === "website")?.value;
 
+  const avatar = getAvatar(data);
+
   const meta = {
     title: data.name,
     description: data.bio,
     logo: "/favicon.png",
-    ogImage: `https://lens.ink/api/image?imageUrl=${
-      data.picture.original?.url ?? data.picture.uri
-    }`,
+    ogImage: `https://lens.ink/api/image?imageUrl=${avatar}`,
     ogUrl: `https://${data.name}.lens.ink`,
     twitter,
   } as Meta;

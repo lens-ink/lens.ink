@@ -18,7 +18,7 @@ export type LensApp = {
 export type Profile = {
   id: string;
   name: string;
-  bio: string;
+  bio?: string;
   followNftAddress: string;
   metadata: string;
   isDefault: boolean;
@@ -29,7 +29,7 @@ export type Profile = {
     key: "website" | "twitter" | "app";
     value: string;
   }[];
-  picture: {
+  picture?: {
     original?: {
       url: string;
       mimeType: string | null;

@@ -1,4 +1,4 @@
-import { LensApp } from "../types";
+import { LensApp, Profile } from "../types";
 import DOMPurify from "isomorphic-dompurify";
 
 export const lensApps: LensApp[] = [
@@ -77,7 +77,8 @@ export function openseaUrl(id: string) {
   )}`;
 }
 
-export function linkifyBio(bio: string) {
+export function linkifyBio(bio?: string) {
+  if (!bio) return "";
   const replacer = (handler: string) => {
     return `<a href="https://${handler}.ink" target="_blank" class="font-bold  text-lensDark">${handler}</a>`;
   };
@@ -89,4 +90,12 @@ export function linkifyBio(bio: string) {
   return DOMPurify.sanitize(description.replace(regexp, replacer), {
     USE_PROFILES: { html: true },
   });
+}
+
+export function getAvatar(profile: Profile) {
+  return (
+    profile.picture?.original?.url ??
+    profile?.picture?.uri ??
+    `https://avatar.tobi.sh/${profile.ownedBy}Id_${profile.handle}.png`
+  );
 }
