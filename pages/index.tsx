@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     title: "lens.ink",
     description: "Lens links",
     logo: "/favicon.png",
-    ogImage: "",
+    ogImage: "/banner.png",
     ogUrl: `https://lens.ink`,
   } as Meta;
 
