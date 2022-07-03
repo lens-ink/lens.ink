@@ -1,7 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Profile } from "../types";
 import Image from "next/image";
-import { openseaUrl, parseId, polygonUrl, shortAddress } from "../utils";
+import {
+  linkifyBio,
+  openseaUrl,
+  parseId,
+  polygonUrl,
+  shortAddress,
+} from "../utils";
+import parse from "html-react-parser";
 
 export interface ProfilePropss {
   profile: Profile;
@@ -12,7 +19,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
       <div className="flex flex-col px-8 md:px-16">
         <div className="w-full flex flex-col md:flex-row items-start md:items-end">
           <img
-            src={profile.picture.original.url}
+            src={profile.picture.original?.url ?? profile.picture.uri}
             alt="avatar"
             className="w-40 h-40 object-cover"
           />
@@ -38,13 +45,27 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
                 {shortAddress(profile.ownedBy)}
               </a>
             </div>
+            <div>
+              <span>
+                <span className="font-bold">
+                  {profile.stats.totalFollowers}
+                </span>{" "}
+                Followers
+              </span>
+              <span className="ml-2">
+                <span className="font-bold">
+                  {profile.stats.totalFollowing}
+                </span>{" "}
+                Following
+              </span>
+            </div>
           </div>
         </div>
         <div className="mt-2">
           <h4 className="py-2 text-xl text-lensDark font-bold">
             {profile.name}
           </h4>
-          <p>{profile.bio}</p>
+          <p>{parse(linkifyBio(profile.bio))}</p>
         </div>
       </div>
     </>

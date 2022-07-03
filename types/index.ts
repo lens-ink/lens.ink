@@ -30,10 +30,11 @@ export type Profile = {
     value: string;
   }[];
   picture: {
-    original: {
+    original?: {
       url: string;
       mimeType: string | null;
     };
+    uri?: string
   };
   coverPicture: {
     original: {

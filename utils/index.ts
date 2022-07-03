@@ -1,4 +1,5 @@
 import { LensApp } from "../types";
+import DOMPurify from "isomorphic-dompurify";
 
 export const lensApps: LensApp[] = [
   {
@@ -41,6 +42,7 @@ export const exampleLinks =
         "lensprotocol.lens.ink",
         "bradorbradley.lens.ink",
         "m1guelpf.lens.ink",
+        "yoginth.lens.ink",
         "yixin91069033.lens.ink",
         "juliettech.lens.ink",
       ]
@@ -48,6 +50,7 @@ export const exampleLinks =
         "lensprotocol.localhost:3000",
         "bradorbradley.localhost:3000",
         "m1guelpf.localhost:3000",
+        "yoginth.localhost:3000",
         "yixin91069033.localhost:3000",
         "juliettech.localhost:3000",
       ];
@@ -72,4 +75,18 @@ export function openseaUrl(id: string) {
     id,
     16
   )}`;
+}
+
+export function linkifyBio(bio: string) {
+  const replacer = (handler: string) => {
+    return `<a href="https://${handler}.ink" target="_blank" class="font-bold  text-lensDark">${handler}</a>`;
+  };
+  const description = bio.replaceAll(
+    "@lensprotocol",
+    `<a href="https://lensprotocol.lens.ink" target="_blank" class="font-bold text-lensDark">@lensprotocol</a>`
+  );
+  const regexp = /@[A-Za-z0-9]+(.lens)+/;
+  return DOMPurify.sanitize(description.replace(regexp, replacer), {
+    USE_PROFILES: { html: true },
+  });
 }

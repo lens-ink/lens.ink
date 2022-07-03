@@ -5,7 +5,7 @@ import { Meta, Profile } from "../../../types";
 import { getProfile } from "../../../apollo/api";
 import ProfileCard from "../../../components/ProfileCard";
 import Layout from "../../../components/Layout";
-import { lensApps } from "../../../utils";
+import { lensApps, linkifyBio } from "../../../utils";
 import AppLink from "../../../components/AppLink";
 import Luck from "../../../assets/luck.svg";
 import Lucks from "../../../assets/lucks.svg";
@@ -28,7 +28,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
     title: data.name,
     description: data.name,
     logo: "/logo.png",
-    ogImage: data.picture.original.url,
+    ogImage: data.picture.original?.url ?? data.picture.uri,
     ogUrl: `https://${data.name}.lens.ink`,
     twitter,
   } as Meta;
