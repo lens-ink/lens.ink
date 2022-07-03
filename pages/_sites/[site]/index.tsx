@@ -28,7 +28,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
     title: data.name,
     description: data.bio,
     logo: "/favicon.png",
-    ogImage: `http://lens.ink/iamge?imageUrl=${
+    ogImage: `https://lens.ink/iamge?imageUrl=${
       data.picture.original?.url ?? data.picture.uri
     }`,
     ogUrl: `https://${data.name}.lens.ink`,
