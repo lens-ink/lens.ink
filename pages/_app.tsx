@@ -10,7 +10,6 @@ import {
   WagmiConfig,
 } from "wagmi";
 import { WalletPanelProvider } from "context/walletPanel";
-import WalletPanel from "components/WalletPanel";
 
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
   publicProvider(),

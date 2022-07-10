@@ -11,9 +11,10 @@ const authLink = new ApolloLink((operation, forward) => {
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("auth_token");
     if (token) {
+      const { accessToken } = JSON.parse(token);
       operation.setContext({
         headers: {
-          "x-access-token": token ? `Bearer ${token}` : "",
+          "x-access-token": token ? `Bearer ${accessToken}` : "",
         },
       });
     }
