@@ -1,4 +1,9 @@
-import { createContext, Dispatch, ReactNode, useReducer } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  useReducer,
+} from "react";
 import { AuthToken, Profile } from "types";
 import { useAccount } from "wagmi";
 
@@ -61,8 +66,10 @@ function walletPanelReducer(
 
 function WalletPanelProvider({ children }: { children: ReactNode }) {
   const { address } = useAccount();
-  const [state, dispatch] = useReducer(walletPanelReducer, { show: !!address });
-
+  const [state, dispatch] = useReducer(walletPanelReducer, {
+    show: !!address,
+  });
+  
   const value = { state, dispatch };
   return (
     <WalletPanelContext.Provider value={value}>

@@ -64,9 +64,9 @@ export const exampleLinks = isProduction
     ]
   : [
       "lensprotocol.localhost:3000",
-      "bradorbradley.localhost:3000",
-      "m1guelpf.localhost:3000",
-      "yoginth.localhost:3000",
-      "yixin91069033.localhost:3000",
-      "juliettech.localhost:3000",
+      "moonxjet.localhost:3000",
+      "label.localhost:3000",
+      "stonegate.localhost:3000",
+      "bynea.localhost:3000",
+      "zelta.localhost:3000",
     ];

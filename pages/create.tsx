@@ -27,18 +27,6 @@ const CreatePage: NextPage = () => {
 
     if (!handle) return;
 
-    const challengeResponse = await generateChallenge(address);
-
-    const signature = await signMessage({
-      message: challengeResponse.data.challenge.text,
-    });
-    console.log(signature);
-
-    const accessTokens = await authenticate(address, signature);
-    const token = accessTokens.data.authenticate as AuthToken;
-    localStorage.setItem("auth_token", token.accessToken);
-    dispatch!({ type: "token", payload: token });
-
     const request = {
       handle,
       profilePictureUri: null,

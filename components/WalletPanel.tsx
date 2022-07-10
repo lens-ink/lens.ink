@@ -31,7 +31,7 @@ const WalletPanel = () => {
 
   useEffect(() => {
     if (!address && !isLoading && state.show) {
-      const timeoutId = setTimeout(() => dispatch!({ type: "hide" }), 2000);
+      const timeoutId = setTimeout(() => dispatch!({ type: "hide" }), 5000);
       return () => {
         clearTimeout(timeoutId);
       };
@@ -51,6 +51,12 @@ const WalletPanel = () => {
   const connectWallet = useCallback(
     async (address: string, authing?: boolean) => {
       authing = true;
+      const token = localStorage.getItem("auth_token");
+      if (token) {
+        dispatch!({ type: "token", payload: JSON.parse(token) });
+        authing = false;
+        return;
+      }
       try {
         const challengeResponse = await generateChallenge(address);
         const authSignature = await signMessage({
@@ -59,7 +65,7 @@ const WalletPanel = () => {
         console.log(authSignature);
         const accessTokens = await authenticate(address, authSignature);
         const token = accessTokens.data.authenticate as AuthToken;
-        localStorage.setItem("auth_token", token.accessToken);
+        localStorage.setItem("auth_token", JSON.stringify(token));
         dispatch!({ type: "token", payload: token });
       } catch (error) {
         console.log(error);

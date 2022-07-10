@@ -1,5 +1,6 @@
 import { apolloAuthClient, apolloClient } from "./client";
 import { gql } from "@apollo/client";
+import { Profile } from "types";
 
 const CREATE_FOLLOW_TYPED_DATA = `
   mutation($request: FollowRequest!) { 
@@ -44,7 +45,6 @@ const CREATE_PROFILE = `
  }
 `;
 
-
 export const createFollowTypedData = (followRequestInfo: any) => {
   return apolloClient.mutate({
     mutation: gql(CREATE_FOLLOW_TYPED_DATA),
@@ -62,4 +62,46 @@ export const createProfile = (createProfileRequest: any) => {
       request: createProfileRequest,
     },
   });
+};
+
+export const getFollowRequest = (profile: Profile, profileId: string) => {
+  const followModule = profile.followModule;
+  if (!followModule) {
+    return {
+      follow: [
+        {
+          profile: profile.id,
+        },
+      ],
+    };
+  }
+  if (followModule.type === "ProfileFollowModule") {
+    return {
+      follow: [
+        {
+          profile: profile.id,
+          followModule: {
+            profileFollowModule: {
+              profileId: profileId,
+            },
+          },
+        },
+      ],
+    };
+  }
+  return {
+    follow: [
+      {
+        profile: profile.id,
+        followModule: {
+          feeFollowModule: {
+            amount: {
+              currency: followModule.recipient,
+              value: followModule.amount,
+            },
+          },
+        },
+      },
+    ],
+  };
 };
