@@ -1,7 +1,6 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
 import { Meta } from "types";
-import Image from "next/image";
 import { exampleLinks } from "utils";
 import Luck from "../assets/luck.svg";
 
@@ -34,9 +33,7 @@ const Home: NextPage = () => {
           ))}
           ...
         </div>
-        <div className="mt-20">
-          <Image src={Luck} width={140} height={140} alt="luck"></Image>
-        </div>
+        <Luck className="mt-20 h-36 inline" />
       </div>
     </Layout>
   );
