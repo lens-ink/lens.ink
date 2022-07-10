@@ -4,7 +4,7 @@ export interface Meta {
   ogImage?: string;
   ogUrl?: string;
   title?: string;
-  twitter?: string
+  twitter?: string;
 }
 
 export type LensApp = {
@@ -34,10 +34,10 @@ export type Profile = {
       url: string;
       mimeType: string | null;
     };
-    uri?: string
+    uri?: string;
   };
-  coverPicture: {
-    original: {
+  coverPicture?: {
+    original?: {
       url: string;
       mimeType: string | null;
     };
@@ -52,4 +52,34 @@ export type Profile = {
     totalPublications: number;
     totalCollects: number;
   };
+  followModule?: {
+    type: "ProfileFollowModule" | "FeeFollowModule";
+    amount?: {
+      asset: {
+        symbol: string;
+        name: string;
+        decimals: number;
+        address: string;
+      };
+      value: string;
+    };
+    recipient?: string;
+  };
 };
+
+export interface FollowRequest {
+  profile: string;
+  followModule?: {
+    feeFollowModule: {
+      amount: {
+        currency: string;
+        value: string;
+      };
+    };
+  };
+}
+
+export interface AuthToken {
+  accessToken: string;
+  refrehsToken: string;
+}

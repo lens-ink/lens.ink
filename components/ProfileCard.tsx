@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Profile } from "../types";
-import Image from "next/image";
 import {
   getAvatar,
   linkifyBio,
@@ -19,7 +18,11 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
     <>
       <div className="flex flex-col px-8 md:px-16">
         <div className="w-full flex flex-col md:flex-row items-start md:items-end">
-          <img src={getAvatar(profile)} alt="avatar" className="w-40 h-40 object-cover" />
+          <img
+            src={getAvatar(profile)}
+            alt="avatar"
+            className="w-40 h-40 object-cover"
+          />
           <div className="ml-0 md:ml-4 mt-2 md:mt-0 flex flex-col items-start">
             <div className="text-3xl md:text-4xl uppercase text-lensDark font-light">
               {profile.handle}
@@ -28,7 +31,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
               <a
                 target="_blank"
                 href={openseaUrl(profile.id)}
-                className="hover:text-lensDark"
+                className="hover:text-lensDark text-mono"
                 rel="noreferrer"
               >
                 {parseId(profile.id)}
@@ -36,7 +39,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
               <a
                 href={polygonUrl(profile.ownedBy)}
                 target="_blank"
-                className="ml-2 hover:text-lensDark"
+                className="ml-2 hover:text-lensDark text-mono"
                 rel="noreferrer"
               >
                 {shortAddress(profile.ownedBy)}

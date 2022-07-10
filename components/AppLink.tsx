@@ -1,39 +1,22 @@
 import { LensApp } from "../types";
-import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
-import { useMemo } from "react";
+import SvgIcon from "./icons/SvgIcon";
 
 export interface AppLinkProps {
   handle: string;
   lensApp: LensApp;
 }
 const AppLink = ({ handle, lensApp }: AppLinkProps) => {
-  const lMd = useMediaQuery({
-    query: "(min-width: 768px)",
-  });
-
   return (
     <>
       <div className="px-8 md:px-16 mt-4 flex flex-row items-center">
-        {lMd && (
-          <Image
-            src={lensApp.logo}
-            alt={lensApp.name}
-            width={40}
-            height={40}
-          ></Image>
-        )}
+        <div className="hidden md:block">
+          <SvgIcon name={lensApp.name} className="h-10 w-10" />
+        </div>
         <div className="ml-0 md:ml-4 ">
           <div className="font-semi-bold flex flex-row">
-            {lMd || (
-              <Image
-                className="visible md:invisible"
-                src={lensApp.logo}
-                alt={lensApp.name}
-                width={20}
-                height={20}
-              ></Image>
-            )}
+            <div className="block md:hidden">
+              <SvgIcon name={lensApp.name} className="h-6 w-6" />
+            </div>
             <span className="ml-2 md:ml-0">{lensApp.name}</span>
           </div>
           <a
