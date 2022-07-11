@@ -47,7 +47,7 @@ const Home: NextPage = () => {
               {link}
             </a>
           ))}
-          ...
+          Or
         </div>
 
         <form
