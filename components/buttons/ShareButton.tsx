@@ -11,7 +11,7 @@ const ShareButton = ({ profile }: { profile: Profile }) => {
       "https://twitter.com/share?" +
       queryString.stringify({
         url: `https://${handle}.ink`,
-        text: `${profile.name}  ${twitter ? "@" : ""}${twitter}`,
+        text: `${profile.name ?? ''}  ${twitter ? "@" : ""}${twitter}`,
         via: "_lensink",
       });
     return window.open(shareUrl, "Share to Twitter");
