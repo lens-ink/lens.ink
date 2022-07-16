@@ -15,22 +15,22 @@ const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
   publicProvider(),
 ]);
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const client = createClient({
-    autoConnect: true,
-    connectors: [
-      new MetaMaskConnector(),
-      new WalletConnectConnector({
-        chains,
-        options: {
-          qrcode: true,
-        },
-      }),
-    ],
-    provider,
-    webSocketProvider,
-  });
+const client = createClient({
+  autoConnect: true,
+  connectors: [
+    new MetaMaskConnector(),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        qrcode: true,
+      },
+    }),
+  ],
+  provider,
+  webSocketProvider,
+});
 
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <WagmiConfig client={client}>

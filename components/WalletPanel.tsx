@@ -117,9 +117,13 @@ const WalletPanel = () => {
               alt="avatar"
               className="w-8 h-8 rounded-full object-cover"
             />
-            <span className="h-[40] font-mono text-lg">
-              {state.profile?.handle ?? shortAddress(address)}
-            </span>
+            <div>
+              <span className="h-[40] font-mono text-lg">
+                {state.profile?.handle ?? shortAddress(address)}
+              </span>
+              <br />
+              {state.notification && <span>{state.notification}</span>}
+            </div>
             {!state.token && (
               <button onClick={() => connectWallet(address)}>Auth</button>
             )}

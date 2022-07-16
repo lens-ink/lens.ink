@@ -2,6 +2,7 @@ import {
   createContext,
   Dispatch,
   ReactNode,
+  useEffect,
   useReducer,
 } from "react";
 import { AuthToken, Profile } from "types";
@@ -69,7 +70,19 @@ function WalletPanelProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(walletPanelReducer, {
     show: !!address,
   });
-  
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+    if (state.notification) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(
+        () => dispatch!({ type: "notification", payload: "" }),
+        3000
+      );
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  });
   const value = { state, dispatch };
   return (
     <WalletPanelContext.Provider value={value}>
