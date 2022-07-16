@@ -28,7 +28,9 @@ interface PathProps extends ParsedUrlQuery {
 const Index = ({ stringifiedData }: IndexProps) => {
   const data = JSON.parse(stringifiedData) as Profile;
 
-  const twitter = data.attributes.find((a) => a.key === "twitter")?.value;
+  const twitter = data.attributes
+    .find((a) => a.key === "twitter")
+    ?.value.replaceAll("@", "");
   const website = data.attributes.find((a) => a.key === "website")?.value;
 
   const avatar = getAvatar(data);

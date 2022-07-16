@@ -31,6 +31,34 @@ const CREATE_FOLLOW_TYPED_DATA = `
  }
 `;
 
+const CREATE_UNFOLLOW_TYPED_DATA = `
+  mutation($request: UnfollowRequest!) { 
+    createUnfollowTypedData(request: $request) {
+      id
+      expiresAt
+      typedData {
+        domain {
+          name
+          chainId
+          version
+          verifyingContract
+        }
+        types {
+          BurnWithSig {
+            name
+            type
+          }
+        }
+        value {
+          nonce
+          deadline
+          tokenId
+        }
+      }
+    }
+ }
+`;
+
 const CREATE_PROFILE = `
   mutation($request: CreateProfileRequest!) { 
     createProfile(request: $request) {
@@ -104,4 +132,15 @@ export const getFollowRequest = (profile: Profile, profileId: string) => {
       },
     ],
   };
+};
+
+export const createUnfollowTypedData = (profile: string) => {
+  return apolloClient.mutate({
+    mutation: gql(CREATE_UNFOLLOW_TYPED_DATA),
+    variables: {
+      request: {
+        profile,
+      },
+    },
+  });
 };

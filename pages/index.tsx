@@ -47,7 +47,7 @@ const Home: NextPage = () => {
               {link}
             </a>
           ))}
-          ...
+          or
         </div>
 
         <form
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
           ></input>
           <button
             type="submit"
-            className="ml-4 text-lensDark bg-green-300 hover:bg-green-500 focus:ring-4 rounded-sm focus:outline-none focus:ring-green-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="ml-4 text-lensDark bg-green-300 hover:bg-green-500 focus:ring-2 rounded-sm focus:outline-none focus:ring-green-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
             Go
           </button>

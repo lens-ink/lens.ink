@@ -1,14 +1,24 @@
-import { createFollowTypedData, getFollowRequest } from "apollo/follow";
+import {
+  createFollowTypedData,
+  getFollowRequest,
+  createUnfollowTypedData,
+} from "apollo/follow";
 import { WalletPanelContext } from "context/walletPanel";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Profile } from "types";
 import { useAccount, useContract, useSigner } from "wagmi";
 import { splitSignature } from "ethers/lib/utils";
-import { LENS_HUB_ABI, LENS_HUB_CONTRACT_ADDRESS } from "utils";
+import {
+  LENS_FOLLOW_NFT_ABI,
+  LENS_HUB_ABI,
+  LENS_HUB_CONTRACT_ADDRESS,
+} from "utils";
 import Button from "./Buttons";
 import LoadingIcon from "components/icons/LoadingIcon";
 import { isFollowedByMe } from "apollo/profile";
 import { signTypedData } from "@wagmi/core";
+import { useHover } from "react-use";
+import { ethers } from "ethers";
 
 const FollowButton = ({ profile }: { profile: Profile }) => {
   const { state, dispatch } = useContext(WalletPanelContext);
@@ -89,13 +99,78 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
     state.token,
   ]);
 
+  const unFollow = useCallback(async () => {
+    if (!address || !state.show) {
+      dispatch!({ type: "show" });
+      return;
+    }
+    if (!state.profile || !state.token) return;
+
+    setLoading(true);
+    try {
+      const res = await createUnfollowTypedData(profile.id);
+      const typedData = res.data.createUnfollowTypedData.typedData;
+      delete typedData.types.__typename;
+      delete typedData.domain.__typename;
+      delete typedData.value.__typename;
+      console.log(typedData);
+      const signature = await signTypedData(typedData);
+
+      const followNftContract = new ethers.Contract(
+        typedData.domain.verifyingContract,
+        LENS_FOLLOW_NFT_ABI,
+        signer!
+      );
+      const { v, r, s } = splitSignature(signature);
+      console.log(v, r, s);
+      await followNftContract.burnWithSig(typedData.value.tokenId, {
+        v,
+        r,
+        s,
+        deadline: typedData.value.deadline,
+      });
+    } catch (error) {
+      console.log(error);
+      if (
+        error instanceof Error &&
+        error.message.includes("User not authenticated")
+      ) {
+        dispatch!({ type: "token" });
+        localStorage.removeItem("auth_token");
+      }
+    } finally {
+      setLoading(false);
+    }
+  }, [
+    address,
+    dispatch,
+    profile.id,
+    signer,
+    state.profile,
+    state.show,
+    state.token,
+  ]);
+
+  function submit() {
+    if (followed) {
+      unFollow();
+    } else {
+      follow();
+    }
+  }
+
+  const element = (hovered: boolean) => (
+    <div>{hovered ? "Unfollow" : "Following"}</div>
+  );
+  const [hoverable, hovered] = useHover(element);
+
   return (
     <>
-      <Button onClick={() => follow()}>
+      <Button onClick={() => submit()}>
         {loading ? (
           <LoadingIcon className="stroke-lensDark text-lensDark" />
         ) : followed ? (
-          "Following"
+          hoverable
         ) : (
           "Follow"
         )}
