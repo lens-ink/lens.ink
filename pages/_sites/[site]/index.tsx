@@ -30,7 +30,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
 
   const twitter = data.attributes
     .find((a) => a.key === "twitter")
-    ?.value.replaceAll("@", "");
+    ?.value.replace(/@/, "");
   const website = data.attributes.find((a) => a.key === "website")?.value;
 
   const avatar = getAvatar(data);

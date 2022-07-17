@@ -13,6 +13,7 @@ export default async function handler(
 
   try {
     const buffer = await exportProfile({ handle: handle as string });
+    res.setHeader("Cache-Control", "s-maxage=31536000, stale-while-revalidate");
     res.setHeader("Content-Type", "image/png");
     res.send(buffer);
   } catch (error) {

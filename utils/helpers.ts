@@ -28,7 +28,7 @@ export function linkifyBio(bio?: string) {
   const replacer = (handler: string) => {
     return `<a href="https://${handler}.ink" target="_blank" class="font-bold  text-lensDark">${handler}</a>`;
   };
-  const description = bio.replaceAll(
+  const description = bio.replace(
     "@lensprotocol",
     `<a href="https://lensprotocol.lens.ink" target="_blank" class="font-bold text-lensDark">@lensprotocol</a>`
   );
