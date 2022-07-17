@@ -33,7 +33,6 @@ export async function exportProfile({
   });
   console.log("loaded");
   await page.waitForLoadState("networkidle");
-  console.log("loaded");
 
   await page.emulateMedia({
     colorScheme: "light",
