@@ -1,6 +1,7 @@
 import { isProduction } from "./constant";
 import * as playwright from "playwright-aws-lambda";
 import { chromium } from "@playwright/test";
+import { loadFont } from "playwright-aws-lambda";
 
 export interface ExportProfileProps {
   width?: number;
@@ -19,6 +20,10 @@ export async function exportProfile({
   const browser = isProduction
     ? await playwright.launchChromium()
     : await chromium.launch();
+  if (isProduction)
+    await loadFont(
+      "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
+    );
   const context = await browser.newContext({
     viewport: {
       width,

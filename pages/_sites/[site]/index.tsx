@@ -16,6 +16,7 @@ import AppLink from "../../../components/AppLink";
 import Luck from "../../../assets/luck.svg";
 import Lucks from "../../../assets/lucks.svg";
 import ButtonPanel from "components/ButtonPanel";
+import { useEffect, useState } from "react";
 
 interface IndexProps {
   stringifiedData: string;
@@ -43,6 +44,10 @@ const Index = ({ stringifiedData }: IndexProps) => {
     ogUrl: `https://${data.name}.lens.ink`,
     twitter,
   } as Meta;
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   return (
     <Layout meta={meta}>
