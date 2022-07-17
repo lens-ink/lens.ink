@@ -1,5 +1,5 @@
 import { isProduction } from "./constant";
-import { chromium } from "playwright-chromium";
+import * as playwright from "playwright-aws-lambda";
 
 export interface ExportProfileProps {
   width?: number;
@@ -15,7 +15,7 @@ export async function exportProfile({
   handle,
 }: ExportProfileProps) {
   console.log("started");
-  const browser = await chromium.launch();
+  const browser = await playwright.launchChromium();
   const context = await browser.newContext({
     viewport: {
       width,
