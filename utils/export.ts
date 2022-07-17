@@ -1,5 +1,5 @@
 import { isProduction } from "./constant";
-import { chromium } from "@playwright/test";
+import { chromium } from "playwright-chromium";
 
 export interface ExportProfileProps {
   width?: number;
