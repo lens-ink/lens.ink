@@ -46,7 +46,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
 
   return (
     <Layout meta={meta}>
-      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip">
+      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip profile-card">
         <div className="absolute -bottom-1 left-10">
           <Luck width={80} height={80} alt="luck" />
         </div>
@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps<IndexProps, PathProps> = async ({
   const { site } = params;
   console.log(site);
   const res = await getProfile({
-    handle: site !== "lensprotocol" ? site + LENS_ENDING : site,
+    handle: site === "lensprotocol" && isProduction ? site : site + LENS_ENDING,
   });
 
   console.log({ res });
