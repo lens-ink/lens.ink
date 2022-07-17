@@ -33,7 +33,7 @@ const Layout = ({ children, meta }: LayoutProps) => {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={meta?.twitter} />
-        <meta name="twitter:creator" content="@shimenmen" />
+        <meta name="twitter:creator" content="@_lensink" />
         <meta name="twitter:title" content={meta?.title} />
         <meta name="twitter:description" content={meta?.description} />
         <meta name="twitter:image" content={meta?.ogImage} />

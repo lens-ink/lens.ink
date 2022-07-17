@@ -7,7 +7,7 @@ import Luck from "../assets/luck.svg";
 
 const Home: NextPage = () => {
   const meta = {
-    title: "",
+    title: "Lens ink",
     description: "Your lens profile is here",
     logo: "/favicon.png",
     ogImage: "https://lens.ink/banner.png",
@@ -32,7 +32,8 @@ const Home: NextPage = () => {
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  if (!mounted && !isProduction) return null;
+  if (!mounted && !isProduction
+    ) return null;
 
   return (
     <Layout meta={meta}>
