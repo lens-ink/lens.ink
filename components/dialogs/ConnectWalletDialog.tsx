@@ -1,16 +1,11 @@
 import { Dialog } from "@headlessui/react";
-import LoadingIcon from "components/icons/LoadingIcon";
 import { useConnect } from "wagmi";
-import Image from "next/image";
 
 interface ConnectWalletDailogProps {
   isOpen: boolean;
   onClose(): void;
 }
 const ConnectWalletDialog = ({ isOpen, onClose }: ConnectWalletDailogProps) => {
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect();
-
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30 z-20" aria-hidden="true" />

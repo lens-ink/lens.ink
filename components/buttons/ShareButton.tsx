@@ -5,13 +5,15 @@ import Button from "./Buttons";
 const ShareButton = ({ profile }: { profile: Profile }) => {
   const share = () => {
     let handle = profile.handle;
-    const twitter = profile.attributes.find((a) => a.key === "twitter")?.value;
+    const twitter = profile.attributes
+      .find((a) => a.key === "twitter")
+      ?.value.replaceAll("@", "");
     if (handle === "lensprotocol") handle += ".lens";
     const shareUrl =
       "https://twitter.com/share?" +
       queryString.stringify({
         url: `https://${handle}.ink`,
-        text: `${profile.name ?? ''}  ${twitter ? "@" : ""}${twitter}`,
+        text: `${profile.name ?? ""}  ${twitter ? "@" : ""}${twitter}`,
         via: "_lensink",
       });
     return window.open(shareUrl, "Share to Twitter");

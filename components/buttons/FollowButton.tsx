@@ -6,7 +6,7 @@ import {
 import { WalletPanelContext } from "context/walletPanel";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Profile } from "types";
-import { useAccount, useContract, useSigner } from "wagmi";
+import { useAccount, useContract, useSigner, useSignTypedData } from "wagmi";
 import { splitSignature } from "ethers/lib/utils";
 import {
   LENS_FOLLOW_NFT_ABI,
@@ -26,6 +26,8 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
   const [followed, setFollowed] = useState(false);
   const [loading, setLoading] = useState(false);
   const { data: signer } = useSigner();
+  const { signTypedDataAsync } = useSignTypedData();
+
   const lensHub = useContract({
     addressOrName: LENS_HUB_CONTRACT_ADDRESS,
     contractInterface: LENS_HUB_ABI,
@@ -61,7 +63,7 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
       delete typedData.domain.__typename;
       delete typedData.value.__typename;
       console.log(typedData);
-      const signature = await signTypedData(typedData);
+      const signature = await signTypedDataAsync(typedData);
 
       const { v, r, s } = splitSignature(signature);
       console.log(v, r, s);
@@ -76,6 +78,10 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
           s,
           deadline: typedData.value.deadline,
         },
+      });
+      dispatch!({
+        type: "notification",
+        payload: `followed ${profile.handle}`,
       });
     } catch (error) {
       console.log(error);
@@ -94,6 +100,7 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
     dispatch,
     lensHub,
     profile,
+    signTypedDataAsync,
     state.profile,
     state.show,
     state.token,
@@ -114,7 +121,8 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
       delete typedData.domain.__typename;
       delete typedData.value.__typename;
       console.log(typedData);
-      const signature = await signTypedData(typedData);
+
+      const signature = await signTypedDataAsync(typedData);
 
       const followNftContract = new ethers.Contract(
         typedData.domain.verifyingContract,
@@ -129,6 +137,10 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
         s,
         deadline: typedData.value.deadline,
       });
+      dispatch!({
+        type: "notification",
+        payload: `unfollowed ${profile.handle}`,
+      });
     } catch (error) {
       console.log(error);
       if (
@@ -141,17 +153,20 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
     } finally {
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     address,
     dispatch,
     profile.id,
     signer,
     state.profile,
+    signTypedDataAsync,
     state.show,
     state.token,
   ]);
 
   function submit() {
+    if (loading) return;
     if (followed) {
       unFollow();
     } else {
@@ -167,13 +182,7 @@ const FollowButton = ({ profile }: { profile: Profile }) => {
   return (
     <>
       <Button onClick={() => submit()}>
-        {loading ? (
-          <LoadingIcon className="stroke-lensDark text-lensDark" />
-        ) : followed ? (
-          hoverable
-        ) : (
-          "Follow"
-        )}
+        {loading ? <LoadingIcon /> : followed ? hoverable : "Follow"}
       </Button>
     </>
   );
