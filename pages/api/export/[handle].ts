@@ -17,6 +17,8 @@ export default async function handler(
     res.send(buffer);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "failed to export" });
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    }
   }
 }

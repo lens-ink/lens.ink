@@ -1,7 +1,6 @@
 import path from "path";
 import fs from "fs-extra";
 import { exportProfile } from "utils/export";
-import { chromium } from "@playwright/test";
 
 describe("utils test", () => {
   it("Export profile", async () => {
