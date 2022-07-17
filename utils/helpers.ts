@@ -46,4 +46,3 @@ export function getAvatar(profile?: Profile, address?: string) {
     `https://avatar.tobi.sh/${profile.ownedBy}Id_${profile.handle}.png`
   );
 }
-
