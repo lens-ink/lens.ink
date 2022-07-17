@@ -8,7 +8,7 @@ const ExportButton = ({ profile }: { profile: Profile }) => {
     const url = isProduction
       ? "https://lens.ink/api/export/"
       : "http://localhost:3000/api/export/";
-    return url + handle.replaceAll(isProduction ? ".lens" : ".test", "");
+    return url + handle.replace(isProduction ? ".lens" : ".test", "");
   };
 
   return (

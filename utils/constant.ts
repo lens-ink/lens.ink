@@ -30,7 +30,7 @@ export const lensApps: LensApp[] = [
     name: "Website",
     logo: "../assets/website.svg",
     color: "#000000",
-    link: (handle: string) => handle.replaceAll("https://", ""),
+    link: (handle: string) => handle.replace("https://", ""),
     url: (handle: string) => handle,
   },
   {

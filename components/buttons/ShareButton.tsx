@@ -7,7 +7,7 @@ const ShareButton = ({ profile }: { profile: Profile }) => {
     let handle = profile.handle;
     const twitter = profile.attributes
       .find((a) => a.key === "twitter")
-      ?.value.replaceAll("@", "");
+      ?.value.replace(/@+/, "");
     if (handle === "lensprotocol") handle += ".lens";
     const shareUrl =
       "https://twitter.com/share?" +
