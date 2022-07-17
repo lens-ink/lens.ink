@@ -1,5 +1,6 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
+import { useEffect, useState } from "react";
 import { Meta } from "types";
 import { exampleLinks, isProduction } from "utils";
 import Luck from "../assets/luck.svg";
@@ -28,6 +29,10 @@ const Home: NextPage = () => {
         : `https://${handle}.localhost:3000`
     );
   }
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   return (
     <Layout meta={meta}>
