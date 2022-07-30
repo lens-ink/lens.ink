@@ -7,7 +7,7 @@ const LucksSvg = () => {
     x: 1,
     delay: 200,
     duration: 200,
-    config: config.molasses,
+    config: config.slow,
   });
 
   const { x: path2 } = useSpring({
@@ -16,7 +16,8 @@ const LucksSvg = () => {
     x: 1,
     delay: 400,
     duration: 200,
-    config: config.molasses,
+    config: config.slow,
+    
   });
   const { x: path3 } = useSpring({
     reset: false,
@@ -24,7 +25,7 @@ const LucksSvg = () => {
     x: 1,
     delay: 600,
     duration: 200,
-    config: config.molasses,
+    config: config.slow,
   });
 
   return (

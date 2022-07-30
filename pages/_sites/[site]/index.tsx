@@ -30,11 +30,11 @@ const Index = ({ stringifiedData }: IndexProps) => {
   const avatar = getAvatar(data);
 
   const meta = {
-    title: data.name,
+    title: data.handle,
     description: data.bio,
     logo: "/favicon.png",
     ogImage: `https://lens.ink/api/image?imageUrl=${avatar}`,
-    ogUrl: `https://${data.name}.lens.ink`,
+    ogUrl: `https://${data.handle}.lens.ink`,
     twitter,
   } as Meta;
 
