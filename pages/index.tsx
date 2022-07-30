@@ -32,8 +32,7 @@ const Home: NextPage = () => {
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  if (!mounted && !isProduction
-    ) return null;
+  if (!mounted) return null;
 
   return (
     <Layout meta={meta}>
