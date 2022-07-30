@@ -16,6 +16,10 @@ export const LENS_API = isProduction
   ? "https://api.lens.dev/"
   : "https://api-mumbai.lens.dev/";
 
+export const APP_URL = isProduction
+  ? "https://lens.ink/"
+  : "http://localhost:3000/";
+
 export const LENS_ENDING = isProduction ? ".lens" : ".test";
 
 export const lensApps: LensApp[] = [

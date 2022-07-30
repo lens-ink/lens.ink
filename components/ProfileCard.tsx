@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Profile } from "../types";
 import {
+  APP_URL,
   getAvatar,
   linkifyBio,
   openseaUrl,
@@ -9,19 +10,32 @@ import {
   shortAddress,
 } from "../utils";
 import parse from "html-react-parser";
+import Image, { ImageLoaderProps } from "next/image";
 
 export interface ProfilePropss {
   profile: Profile;
 }
 const ProfileCard = ({ profile }: ProfilePropss) => {
+  const loader = ({ src, width, quality }: ImageLoaderProps) => {
+    return `${APP_URL}/_next/image?w=${width}&url=${encodeURIComponent(
+      src
+    )}&q=${quality || 75}`;
+  };
   return (
     <>
       <div className="flex flex-col px-8 md:px-16">
         <div className="w-full flex flex-col md:flex-row items-start md:items-end">
-          <img
+          <Image
+            loader={loader}
             src={getAvatar(profile)}
             alt="avatar"
-            className="w-40 h-40 object-cover"
+            width={160}
+            height={160}
+            layout="fixed"
+            placeholder="blur"
+            unoptimized
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO88+d5PQAIuwNA/0Pe8QAAAABJRU5ErkJggg=="
+            // className="object-cover"
           />
           <div className="ml-0 md:ml-4 mt-2 md:mt-0 flex flex-col items-start">
             <div className="text-3xl md:text-4xl uppercase text-lensDark font-light">

@@ -7,7 +7,7 @@ const LuckSvg = () => {
     x: 1,
     delay: 200,
     duration: 200,
-    config: config.molasses,
+    config: config.slow,
   });
 
   return (
