@@ -1,22 +1,15 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Image from "next/image";
 import { Meta, Profile } from "../../../types";
 import { getProfile } from "../../../apollo/profile";
 import ProfileCard from "../../../components/ProfileCard";
 import Layout from "../../../components/Layout";
-import {
-  getAvatar,
-  isProduction,
-  lensApps,
-  LENS_ENDING,
-  linkifyBio,
-} from "../../../utils";
+import { getAvatar, isProduction, lensApps, LENS_ENDING } from "../../../utils";
 import AppLink from "../../../components/AppLink";
-import Luck from "../../../assets/luck.svg";
-import Lucks from "../../../assets/lucks.svg";
 import ButtonPanel from "components/ButtonPanel";
 import { useEffect, useState } from "react";
+import LuckSvg from "components/icons/LuckSvg";
+import LucksSvg from "components/icons/LucksSvg";
 
 interface IndexProps {
   stringifiedData: string;
@@ -53,10 +46,10 @@ const Index = ({ stringifiedData }: IndexProps) => {
     <Layout meta={meta}>
       <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip profile-card">
         <div className="absolute bottom-20 md:-bottom-1 left-10">
-          <Luck width={80} height={80} alt="luck" />
+          <LuckSvg />
         </div>
         <div className="absolute bottom-20 md:-bottom-1 right-6">
-          <Lucks width={200} height={130} alt="lucks" />
+          <LucksSvg />
         </div>
         <ProfileCard profile={data}></ProfileCard>
         <div className="mt-10 mb-52 z-10">
