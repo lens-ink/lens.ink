@@ -47,15 +47,15 @@ const Index = ({ stringifiedData }: IndexProps) => {
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  if (!mounted && !isProduction) return null;
+  if (!mounted) return null;
 
   return (
     <Layout meta={meta}>
       <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip profile-card">
-        <div className="absolute -bottom-1 left-10">
+        <div className="absolute bottom-20 md:-bottom-1 left-10">
           <Luck width={80} height={80} alt="luck" />
         </div>
-        <div className="absolute -bottom-1 right-6">
+        <div className="absolute bottom-20 md:-bottom-1 right-6">
           <Lucks width={200} height={130} alt="lucks" />
         </div>
         <ProfileCard profile={data}></ProfileCard>

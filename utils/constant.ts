@@ -1,4 +1,4 @@
-import { LensApp } from "types";
+import { LensApp } from "../types";
 import fileFollowNFT from "./abis/lens-follow-nft-contract-abi.json";
 import fileLensHub from "./abis/lens-hub-contract-abi.json";
 

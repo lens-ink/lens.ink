@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -35,6 +36,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^28.1.6",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
