@@ -26,7 +26,7 @@ const Home: NextPage = () => {
     window.open(
       isProduction
         ? `https://${handle}.lens.ink`
-        : `https://${handle}.localhost:3000`
+        : `http://${handle}.localhost:3000`
     );
   }
 
