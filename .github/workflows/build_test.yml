@@ -19,7 +19,7 @@ jobs:
         run: |
           yarn
           yarn build
-          npx playwright install
+          yarn playwright install-deps
           nohup yarn start &
           sleep 5s
           yarn test
