@@ -10,6 +10,7 @@ import {
   WagmiConfig,
 } from "wagmi";
 import { WalletPanelProvider } from "context/walletPanel";
+import { ThemeProvider } from "next-themes";
 
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
   publicProvider(),
@@ -33,11 +34,13 @@ const client = createClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <WagmiConfig client={client}>
-        <WalletPanelProvider>
-          <Component {...pageProps} />
-        </WalletPanelProvider>
-      </WagmiConfig>
+      <ThemeProvider attribute="class">
+        <WagmiConfig client={client}>
+          <WalletPanelProvider>
+            <Component {...pageProps} />
+          </WalletPanelProvider>
+        </WagmiConfig>
+      </ThemeProvider>
     </>
   );
 }

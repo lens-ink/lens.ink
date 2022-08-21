@@ -44,7 +44,7 @@ const Index = ({ stringifiedData }: IndexProps) => {
 
   return (
     <Layout meta={meta}>
-      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens overflow-clip profile-card">
+      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens dark:bg-gray-800 overflow-clip profile-card">
         <div className="absolute bottom-20 md:-bottom-1 left-10">
           <LuckSvg />
         </div>
