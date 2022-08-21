@@ -4,7 +4,7 @@ import { isProduction } from "utils";
 import { useTheme } from "next-themes";
 
 const ExportButton = ({ profile }: { profile: Profile }) => {
-  const { theme } = useTheme();
+  const { resolvedTheme: theme } = useTheme();
   const getProfile = () => {
     let handle = profile.handle;
     const url = isProduction

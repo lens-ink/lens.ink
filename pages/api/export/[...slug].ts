@@ -10,7 +10,7 @@ export default async function handler(
   if (!handle) {
     res.status(400).json({ error: "handle not provided" });
   }
-  console.log(`export profile ${handle}`);
+  console.log(`export profile ${handle}, theme ${theme}`);
 
   try {
     const buffer = await exportProfile({
