@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 
 const ThemeChanger = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme: theme, setTheme } = useTheme();
   return (
     <button
       type="button"

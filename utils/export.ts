@@ -8,14 +8,14 @@ export interface ExportProfileProps {
   height?: number;
   timeout?: number;
   handle: string;
-  theme?: 'light' | 'dark'
+  theme: 'light' | 'dark'
 }
 
 export async function exportProfile({
   width = 2560,
   height = 1440,
   timeout = 30000,
-  theme = 'light',
+  theme,
   handle,
 }: ExportProfileProps) {
   console.log("started");
