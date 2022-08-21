@@ -5,7 +5,8 @@ type TagListProps = {
   handle: string;
 };
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) =>
+  fetch(url, { mode: "no-cors" }).then((res) => res.json());
 
 export const TagList = ({ handle }: TagListProps) => {
   const url = isProduction
