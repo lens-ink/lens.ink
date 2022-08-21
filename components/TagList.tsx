@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { isProduction } from "utils";
 
 type TagListProps = {
   handle: string;
@@ -7,7 +8,10 @@ type TagListProps = {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const TagList = ({ handle }: TagListProps) => {
-  const { data, error } = useSWR(`/api/tags/${handle}`, fetcher);
+  const url = isProduction
+    ? `https://lens.ink/api/tasg/${handle}`
+    : `http://localhost:3000/api/tags/${handle}`;
+  const { data, error } = useSWR(url, fetcher);
 
   if (error) return <div></div>;
   if (!data?.keywords) return <div></div>;
