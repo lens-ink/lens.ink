@@ -5,14 +5,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { handle } = req.query;
+  const { slug } = req.query;
+  const [handle, theme] = slug as string[];
   if (!handle) {
     res.status(400).json({ error: "handle not provided" });
   }
   console.log(`export profile ${handle}`);
 
   try {
-    const buffer = await exportProfile({ handle: handle as string });
+    const buffer = await exportProfile({
+      handle: handle as string,
+      theme: (theme as "light" | "dark") ?? "light",
+    });
     res.setHeader("Cache-Control", "s-maxage=31536000, stale-while-revalidate");
     res.setHeader("Content-Type", "image/png");
     res.send(buffer);

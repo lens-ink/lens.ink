@@ -8,12 +8,14 @@ export interface ExportProfileProps {
   height?: number;
   timeout?: number;
   handle: string;
+  theme?: 'light' | 'dark'
 }
 
 export async function exportProfile({
   width = 2560,
   height = 1440,
   timeout = 30000,
+  theme = 'light',
   handle,
 }: ExportProfileProps) {
   console.log("started");
@@ -30,6 +32,7 @@ export async function exportProfile({
       height,
     },
     deviceScaleFactor: 1.5,
+    colorScheme: theme
   });
   const page = await context.newPage();
   const url = isProduction

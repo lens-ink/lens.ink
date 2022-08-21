@@ -39,7 +39,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
             // className="object-cover"
           />
           <div className="ml-0 md:ml-4 mt-2 md:mt-0 flex flex-col items-start">
-            <div className="text-3xl md:text-4xl uppercase text-lensDark font-light">
+            <div className="text-3xl md:text-4xl uppercase text-lensDark dark:text-white font-light">
               {profile.handle}
             </div>
             <div className="mt-2 text-gray-500 ">
@@ -77,7 +77,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
           </div>
         </div>
         <div className="mt-2">
-          <h4 className="py-2 text-xl text-lensDark font-bold">
+          <h4 className="py-2 text-xl text-lensDark dark:text-lens font-bold">
             {profile.name}
           </h4>
           <p>{parse(linkifyBio(profile.bio))}</p>

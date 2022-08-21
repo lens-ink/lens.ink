@@ -1,14 +1,18 @@
 import { Profile } from "types";
 import Button from "./Buttons";
 import { isProduction } from "utils";
+import { useTheme } from "next-themes";
 
 const ExportButton = ({ profile }: { profile: Profile }) => {
+  const { theme } = useTheme();
   const getProfile = () => {
     let handle = profile.handle;
     const url = isProduction
       ? "https://lens.ink/api/export/"
       : "http://localhost:3000/api/export/";
-    return url + handle.replace(isProduction ? ".lens" : ".test", "");
+    return (
+      url + handle.replace(isProduction ? ".lens" : ".test", "") + `/${theme}`
+    );
   };
 
   return (
@@ -25,7 +29,8 @@ const ExportButton = ({ profile }: { profile: Profile }) => {
         target="_blank"
         href={getProfile()}
         download={`${profile.handle}.png`}
-        hidden rel="noreferrer"
+        hidden
+        rel="noreferrer"
       ></a>
     </>
   );
