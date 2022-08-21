@@ -10,7 +10,7 @@ const fetcher = (url: string) =>
 
 export const TagList = ({ handle }: TagListProps) => {
   const url = isProduction
-    ? `https://lens.ink/api/tags/${handle}`
+    ? `https://www.lens.ink/api/tags/${handle}`
     : `http://localhost:3000/api/tags/${handle}`;
   const { data, error } = useSWR(url, fetcher);
 
