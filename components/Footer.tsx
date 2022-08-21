@@ -27,7 +27,7 @@ const Footer = () => {
           powered by Vercel ▲
         </a>
       </div>
-      <div className="absolute right-1 bottom-1">
+      <div className="absolute right-2 top-2">
         <ThemeChanger></ThemeChanger>
       </div>
     </>
