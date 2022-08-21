@@ -77,7 +77,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
           </div>
         </div>
         <div className="mt-2">
-          <h4 className="py-2 text-xl text-lensDark dark:text-lens font-bold">
+          <h4 className="py-2 text-xl text-lensDark font-bold">
             {profile.name}
           </h4>
           <p>{parse(linkifyBio(profile.bio))}</p>
