@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import NextCors from 'nextjs-cors';
 
 const API_URL = process.env.API_URL;
 
@@ -12,6 +13,12 @@ export default async function request(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
   const { handle } = req.query;
   if (!handle) {
     res.status(400).json({ error: "handle not provided" });

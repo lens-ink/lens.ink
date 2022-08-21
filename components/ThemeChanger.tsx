@@ -6,7 +6,7 @@ const ThemeChanger = () => {
     <button
       type="button"
       onClick={() => (theme === "light" ? setTheme("dark") : setTheme("light"))}
-      className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2"
+      className="text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2"
     >
       {theme === "light" ? (
         <svg
