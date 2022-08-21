@@ -10,7 +10,7 @@ export const TagList = ({ handle }: TagListProps) => {
   const { data, error } = useSWR(`/api/tags/${handle}`, fetcher);
 
   if (error) return <div></div>;
-  if (!data.keywords) return <div></div>;
+  if (!data?.keywords) return <div></div>;
 
   return (
     <div className="flex gap-2 flex-wrap max-w-3xl">
