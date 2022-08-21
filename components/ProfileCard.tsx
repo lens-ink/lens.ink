@@ -11,6 +11,7 @@ import {
 } from "../utils";
 import parse from "html-react-parser";
 import Image, { ImageLoaderProps } from "next/image";
+import { TagList } from "./TagList";
 
 export interface ProfilePropss {
   profile: Profile;
@@ -80,6 +81,9 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
             {profile.name}
           </h4>
           <p>{parse(linkifyBio(profile.bio))}</p>
+          <div className="mt-2">
+            <TagList handle={profile.handle}></TagList>
+          </div>
         </div>
       </div>
     </>
