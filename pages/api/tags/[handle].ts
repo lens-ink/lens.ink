@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import NextCors from 'nextjs-cors';
+import NextCors from "nextjs-cors";
 
 const API_URL = process.env.API_URL;
 
@@ -14,22 +14,23 @@ export default async function request(
   res: NextApiResponse
 ) {
   await NextCors(req, res, {
-    // Options
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    methods: ["GET"],
     origin: "*",
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200,
   });
+
   const { handle } = req.query;
   if (!handle) {
     res.status(400).json({ error: "handle not provided" });
   }
-  console.log(`export profile ${handle}`);
+  console.log(`get profile tags ${handle}`);
 
   const url = API_URL! + handle;
   try {
     const result = await fetch(url);
     res.status(200).json(await result.json());
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error });
   }
 }
