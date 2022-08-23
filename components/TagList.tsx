@@ -6,13 +6,10 @@ type TagListProps = {
 };
 
 const fetcher = (url: string) =>
-  fetch(url, { mode: "no-cors" }).then((res) => res.json());
+  fetch(url).then((res) => res.json());
 
 export const TagList = ({ handle }: TagListProps) => {
-  const url = isProduction
-    ? `https://www.lens.ink/api/tags/${handle}`
-    : `http://localhost:3000/api/tags/${handle}`;
-  const { data, error } = useSWR(url, fetcher);
+  const { data, error } = useSWR(`/api/tags/${handle}`, fetcher);
 
   if (error) return <div></div>;
   if (!data?.keywords) return <div></div>;
