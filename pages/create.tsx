@@ -1,17 +1,14 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
-import { WalletPanelAction, WalletPanelContext } from "context/walletPanel";
+import { WalletPanelContext } from "context/walletPanel";
 import { useContext, useState } from "react";
 import { useAccount } from "wagmi";
 import { createProfile } from "apollo/follow";
-import { signMessage } from "@wagmi/core";
-import { generateChallenge, authenticate } from "apollo/login";
-import { AuthToken } from "types";
+import { Meta } from "types";
 
 const CreatePage: NextPage = () => {
   const { dispatch } = useContext(WalletPanelContext);
   const { address } = useAccount();
-  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,8 +34,10 @@ const CreatePage: NextPage = () => {
     console.log(res);
   }
 
+  const meta: Meta = {};
+
   return (
-    <Layout>
+    <Layout meta={meta}>
       <div className="h-full mt-32 text-lensDark tracking-wider text-center w-80">
         <form
           onSubmit={(e) => handleSubmit(e)}
