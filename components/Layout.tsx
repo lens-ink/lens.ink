@@ -17,10 +17,6 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#00501e" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <meta itemProp="name" content={meta?.title} />
-        <meta itemProp="description" content={meta?.description} />
-        <meta itemProp="image" content={meta?.ogImage} />
         <meta name="description" content={meta?.description} />
 
         <link rel="icon" href="/favicon.png" />
