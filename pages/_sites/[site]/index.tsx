@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import LuckSvg from "components/icons/LuckSvg";
 import LucksSvg from "components/icons/LucksSvg";
 
+const API_URL = process.env.API_URL;
 interface IndexProps {
   stringifiedData: string;
 }
@@ -109,18 +110,29 @@ export const getStaticProps: GetStaticProps<IndexProps, PathProps> = async ({
   if (!params) throw new Error("No path parameters found");
   const { site } = params;
   console.log(site);
+  const handle =
+    site === "lensprotocol" && isProduction ? site : site + LENS_ENDING;
   const res = await getProfile({
-    handle: site === "lensprotocol" && isProduction ? site : site + LENS_ENDING,
+    handle,
   });
 
-  console.log({ res });
   const data = res.data.profile;
 
   if (!data) return { notFound: true, revalidate: 10 };
 
+  let tags: string[] = [];
+  try {
+    const url = API_URL! + handle;
+    const result = await fetch(url);
+    tags = (await result.json()).keywords;
+    console.log(tags);
+  } catch (error) {
+    console.log("fetch tags failed", error);
+  }
+
   return {
     props: {
-      stringifiedData: JSON.stringify(data),
+      stringifiedData: JSON.stringify({ ...data, tags }),
     },
     revalidate: 3600,
   };

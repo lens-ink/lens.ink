@@ -65,6 +65,7 @@ export type Profile = {
     };
     recipient?: string;
   };
+  tags?: string[]
 };
 
 export interface FollowRequest {
