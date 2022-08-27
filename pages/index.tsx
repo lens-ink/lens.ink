@@ -6,13 +6,14 @@ import { exampleLinks, isProduction } from "utils";
 import Luck from "../assets/luck.svg";
 
 const Home: NextPage = () => {
-  const meta = {
+  const meta: Meta = {
     title: "Lens ink",
     description: "Your lens profile is here",
     logo: "/favicon.png",
     ogImage: "https://lens.ink/banner.png",
     ogUrl: `https://lens.ink`,
-  } as Meta;
+    twitter: "@_lens.ink",
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
