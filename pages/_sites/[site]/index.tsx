@@ -45,15 +45,9 @@ const Index = ({ stringifiedData }: IndexProps) => {
 
   return (
     <Layout meta={meta}>
-      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto h-full md:h-auto pt-10 md:pt-20 bg-lens dark:bg-gray-800 overflow-clip profile-card">
-        <div className="absolute bottom-20 md:-bottom-1 left-10">
-          <LuckSvg />
-        </div>
-        <div className="absolute bottom-20 md:-bottom-1 right-6">
-          <LucksSvg />
-        </div>
+      <div className="relative min-w-[100%] md:min-w-1/3 mx-auto pt-10 md:pt-20 bg-lens dark:bg-gray-800 md:overflow-clip profile-card">
         <ProfileCard profile={data}></ProfileCard>
-        <div className="mt-10 mb-52 z-10">
+        <div className="mt-10 mb-2 md:mb-52 z-10">
           {lensApps.map((app) => {
             if (app.name === "Twitter")
               return (
@@ -84,6 +78,10 @@ const Index = ({ stringifiedData }: IndexProps) => {
               ></AppLink>
             );
           })}
+        </div>
+        <div className="relative md:absolute -bottom-1 w-full px-10 flex justify-between items-end">
+          <LuckSvg />
+          <LucksSvg />
         </div>
       </div>
       <ButtonPanel profile={data}></ButtonPanel>

@@ -30,13 +30,12 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
             loader={loader}
             src={getAvatar(profile)}
             alt="avatar"
+            className="object-cover"
             width={160}
             height={160}
-            layout="fixed"
             placeholder="blur"
             unoptimized
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO88+d5PQAIuwNA/0Pe8QAAAABJRU5ErkJggg=="
-            // className="object-cover"
           />
           <div className="ml-0 md:ml-4 mt-2 md:mt-0 flex flex-col items-start">
             <div className="text-3xl md:text-4xl uppercase text-lensDark dark:text-white font-light">
