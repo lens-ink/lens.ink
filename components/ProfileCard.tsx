@@ -82,7 +82,7 @@ const ProfileCard = ({ profile }: ProfilePropss) => {
           </h4>
           <p>{parse(linkifyBio(profile.bio))}</p>
           <div className="mt-2">
-            <TagList handle={profile.handle}></TagList>
+            <TagList tags={profile.tags}></TagList>
           </div>
         </div>
       </div>

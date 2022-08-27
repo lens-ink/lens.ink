@@ -118,7 +118,7 @@ const WalletPanel = () => {
               className="w-8 h-8 rounded-full object-cover"
             />
             <div>
-              <span className="h-[40] font-mono text-lg">
+              <span className="h-[40] font-mono text-lg text-black">
                 {state.profile?.handle ?? shortAddress(address)}
               </span>
               <br />
@@ -128,7 +128,7 @@ const WalletPanel = () => {
               <button onClick={() => connectWallet(address)}>Auth</button>
             )}
             <button onClick={() => disconnectWallet()} className="ml-2">
-              <XCircle></XCircle>
+              <XCircle color="black"></XCircle>
             </button>
           </>
         ) : (
