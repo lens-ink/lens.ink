@@ -13,12 +13,8 @@ const Layout = ({ children, meta }: LayoutProps) => {
     <>
       <Head>
         <title>{meta?.title}</title>
-        <link rel="icon" href="/favicon.png" />
-        <link rel="shortcut icon" type="image/x-icon" href={meta?.logo} />
-        <link rel="apple-touch-icon" sizes="180x180" href={meta?.logo} />
-        <meta name="theme-color" content="#00501e" />
-
         <meta charSet="utf-8" />
+        <meta name="theme-color" content="#00501e" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta itemProp="name" content={meta?.title} />
@@ -31,12 +27,16 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta property="og:image" content={meta?.ogImage} />
         <meta property="og:type" content="website" />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content={meta?.twitter} />
-        <meta property="twitter:creator" content="@_lensink" />
-        <meta property="twitter:title" content={meta?.title} />
-        <meta property="twitter:description" content={meta?.description} />
-        <meta property="twitter:image:src" content={meta?.ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={meta?.twitter} />
+        <meta name="twitter:creator" content="@_lensink" />
+        <meta name="twitter:title" content={meta?.title} />
+        <meta name="twitter:description" content={meta?.description} />
+        <meta name="twitter:image:src" content={meta?.ogImage} />
+        
+        <link rel="icon" href="/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href={meta?.logo} />
+        <link rel="apple-touch-icon" sizes="180x180" href={meta?.logo} />
       </Head>
       <div className="bg-gradient-to-br from-lens via-purple-100 to-green-100 dark:from-black dark:via-black dark:to-gray-800 relative w-full min-h-screen flex flex-col items-center md:justify-center">
         {children}
