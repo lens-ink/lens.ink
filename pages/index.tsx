@@ -31,9 +31,9 @@ const Home: NextPage = () => {
     );
   }
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => setMounted(true), []);
+  // if (!mounted) return null;
 
   return (
     <Layout meta={meta}>
