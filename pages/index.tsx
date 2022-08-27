@@ -73,7 +73,7 @@ const Home: NextPage = () => {
             Go
           </button>
         </form>
-        <Luck className="mt-20 h-36 inline" />
+        <Luck className="mt-10 md:mt-20 h-36 inline" />
       </div>
     </Layout>
   );
