@@ -31,12 +31,12 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta property="og:image" content={meta?.ogImage} />
         <meta property="og:type" content="website" />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={meta?.twitter} />
-        <meta name="twitter:creator" content="@_lensink" />
-        <meta name="twitter:title" content={meta?.title} />
-        <meta name="twitter:description" content={meta?.description} />
-        <meta name="twitter:image:src" content={meta?.ogImage} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content={meta?.twitter} />
+        <meta property="twitter:creator" content="@_lensink" />
+        <meta property="twitter:title" content={meta?.title} />
+        <meta property="twitter:description" content={meta?.description} />
+        <meta property="twitter:image:src" content={meta?.ogImage} />
       </Head>
       <div className="bg-gradient-to-br from-lens via-purple-100 to-green-100 dark:from-black dark:via-black dark:to-gray-800 relative w-full min-h-screen flex flex-col items-center md:justify-center">
         {children}
