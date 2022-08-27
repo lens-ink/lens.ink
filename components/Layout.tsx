@@ -14,7 +14,7 @@ const Layout = ({ children, meta }: LayoutProps) => {
     <>
       <Head>
         <title>{meta?.title}</title>
-        <meta charSet="utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="theme-color" content="#00501e" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={meta?.description} />
