@@ -1,10 +1,11 @@
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { Meta } from "types";
 import Footer from "./Footer";
 import WalletPanel from "./WalletPanel";
 
 export interface LayoutProps {
-  meta?: Meta;
+  meta: Meta;
   children: React.ReactNode;
 }
 
@@ -21,23 +22,34 @@ const Layout = ({ children, meta }: LayoutProps) => {
         <meta itemProp="description" content={meta?.description} />
         <meta itemProp="image" content={meta?.ogImage} />
         <meta name="description" content={meta?.description} />
-        <meta property="og:title" content={meta?.title} />
-        <meta property="og:description" content={meta?.description} />
-        <meta property="og:url" content={meta?.ogUrl} />
-        <meta property="og:image" content={meta?.ogImage} />
-        <meta property="og:type" content="website" />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={meta?.twitter} />
-        <meta name="twitter:creator" content="@_lensink" />
-        <meta name="twitter:title" content={meta?.title} />
-        <meta name="twitter:description" content={meta?.description} />
-        <meta name="twitter:image:src" content={meta?.ogImage} />
-        
         <link rel="icon" href="/favicon.png" />
         <link rel="shortcut icon" type="image/x-icon" href={meta?.logo} />
         <link rel="apple-touch-icon" sizes="180x180" href={meta?.logo} />
       </Head>
+      <NextSeo
+        title={meta.title}
+        description={meta?.description}
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url: meta.ogUrl,
+          title: meta.title,
+          description: meta.description,
+          images: [
+            {
+              url: meta.ogImage ?? "",
+              alt: "Lens.ink",
+              type: "image/jpeg",
+            },
+          ],
+          site_name: "Lens.ink",
+        }}
+        twitter={{
+          handle: '@_lens.ink',
+          site: meta.twitter,
+          cardType: "summary_large_image",
+        }}
+      />
       <div className="bg-gradient-to-br from-lens via-purple-100 to-green-100 dark:from-black dark:via-black dark:to-gray-800 relative w-full min-h-screen flex flex-col items-center md:justify-center">
         {children}
         <Footer></Footer>
