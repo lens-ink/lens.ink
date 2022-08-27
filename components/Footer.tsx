@@ -4,7 +4,7 @@ import ThemeChanger from "./ThemeChanger";
 const Footer = () => {
   return (
     <>
-      <div className="absolute bottom-1 md:bottom-0 py-2 text-lensDark w-full text-center">
+      <div className="bg-lens dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent md:absolute bottom-1 md:bottom-0 py-2 text-lensDark w-full text-center">
         <a href="https://github.com/stonega" target="_blank" rel="noreferrer">
           Made by stonegate
         </a>
