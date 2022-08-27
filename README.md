@@ -9,3 +9,7 @@ yarn
 
 yarn dev
 ```
+
+## Credit
+
+Thanks to @susmeet to provide amazing profile keyworks api!
