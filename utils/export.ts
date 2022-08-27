@@ -2,6 +2,7 @@ import { isProduction } from "./constant";
 import * as playwright from "playwright-aws-lambda";
 import { chromium } from "@playwright/test";
 import { loadFont } from "playwright-aws-lambda";
+import { primitives } from "@react-spring/web/dist/declarations/src/primitives";
 
 export interface ExportProfileProps {
   width?: number;
@@ -52,7 +53,7 @@ export async function exportProfile({
   console.log("page loaded");
   const frames = page.frames();
   await Promise.all(frames.map((frame) => frame.waitForLoadState()));
-
+  await new Promise(resolve => setTimeout(resolve, 1000))
   const profileCard = page.locator(".profile-card");
   const buffer = await profileCard.screenshot();
   await browser.close();
